@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './Marker.scss';
+import ToMark from './ToMark/ToMark';
 
 function Marker() {
 
-	const [items, setItems] = useState([
+	const [items] = useState([
 		"First item",
 		"Second special item",
 		"Third item",
 		"Fourth special item",
 	]);
+	const [textValue, setTextValue] =useState("");
+
 
 	return (
 		<div className="Marker">
@@ -19,9 +22,11 @@ function Marker() {
 				Apply the marker for <u>all items</u>.
 			</p>
 
-			<input type="text" placeholder="Text to marker..." />
+			<input type="text" placeholder="Text to marker..." value={textValue} onChange={(e)=>setTextValue(e.target.value) } />
 			<ul>
-				{ /* The list should be here */ }
+			
+			 <ToMark words={items} doesInc={textValue} />
+	
 			</ul>
 		</div>
 	)
